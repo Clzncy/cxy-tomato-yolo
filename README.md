@@ -1,5 +1,7 @@
 # cxy 番茄病害智能识别与预警系统
 
+> **一句话介绍**：开箱即用的番茄病害智能识别系统——YOLO11m 十类病害检测 + PySide6 桌面训练平台 + 三级预警，代码、权重与复现管线全公开。
+
 基于 Ultralytics YOLO11m 的番茄 10 类病害/虫害目标检测与三级预警系统，配套 PySide6 桌面训练平台。
 
 系统覆盖完整闭环：**数据自动标注 → 数据集合并 → 迁移学习训练 → 多病害识别 → 分级预警**。
@@ -35,6 +37,29 @@ flowchart LR
 | Ultralytics YOLO | 8.4.x（YOLO11m） |
 | GUI | PySide6 |
 | 图像处理 | OpenCV |
+
+## 快速开始
+
+环境要求：Windows 10/11，Python 3.11+，PyTorch + CUDA 12.6+。
+
+```bash
+pip install ultralytics pyside6 opencv-python
+```
+
+启动桌面平台：
+
+```bash
+python yolo_trainer_app.py
+# 或直接双击 run.bat
+```
+
+用仓库内权重直接跑推理/预警（先下载 `weights/tomato10_best.pt`）：
+
+```bash
+python warn_rules.py --model weights/tomato10_best.pt --source <图片或文件夹> --out warn_out
+```
+
+完整复现（从公开数据集重建训练集并重新训练）见下方"数据集管线"与"训练与结果"。
 
 ## 数据集管线
 
