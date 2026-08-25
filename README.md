@@ -82,7 +82,7 @@ yolo detect train data=E:/tomato/tomato_multi_wholeleaf/dataset.yaml \
 | mAP50 | 0.995 |
 | mAP50-95 | 0.995 |
 
-当前模型权重：`E:\tomato\tomato_multi_wholeleaf\runs\detect\train\weights\best.pt`
+仓库内模型权重：`weights/tomato10_best.pt`（v2 整叶标注模型，mAP50-95 0.995，可直接下载使用）
 
 > 注：v2 模型在统一整叶标注数据集上训练，输出为"一叶一框"，与预警口径完全对齐；
 > 当前指标在 PlantVillage 风格叶片特写图上已接近饱和，田间实拍图仍需补标微调验证。
@@ -131,6 +131,8 @@ YoloTrainer/
 ├── auto_boxes.py             # 分类图 → 整叶框 YOLO 标签
 ├── merge_dataset.py          # 数据集合并/去重/分层划分
 ├── warn_rules.py             # 预警规则引擎
+├── weights/
+│   └── tomato10_best.pt      # v2 整叶标注模型权重
 ├── run.bat                   # 一键启动
 └── 使用说明.txt
 ```
