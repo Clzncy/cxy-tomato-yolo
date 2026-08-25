@@ -70,19 +70,22 @@ names:
 
 ```bash
 yolo detect train data=E:/tomato/tomato_multi_wholeleaf/dataset.yaml \
-  model=<best.pt 或 yolo11m.pt> epochs=80 imgsz=1024 batch=8 device=0 close_mosaic=15
+  model=yolo11m.pt epochs=50 imgsz=640 batch=16 device=0 close_mosaic=10
 ```
 
-当前验证结果（YOLO11m，imgsz=640，50 轮）：
+当前验证结果（v2 整叶标注模型，YOLO11m，imgsz=640，50 轮，val 集）：
 
 | 指标 | 数值 |
 |---|---|
-| Precision | 0.947 |
-| Recall | 0.949 |
-| mAP50 | 0.945 |
-| mAP50-95 | 0.894 |
+| Precision | 0.999 |
+| Recall | 0.999 |
+| mAP50 | 0.995 |
+| mAP50-95 | 0.995 |
 
-> 注：该模型基于早期混合标注数据训练；仓库提供统一整叶标注数据集（`tomato_multi_wholeleaf`），重训后模型输出为"一叶一框"，与预警口径完全对齐。
+当前模型权重：`E:\tomato\tomato_multi_wholeleaf\runs\detect\train\weights\best.pt`
+
+> 注：v2 模型在统一整叶标注数据集上训练，输出为"一叶一框"，与预警口径完全对齐；
+> 当前指标在 PlantVillage 风格叶片特写图上已接近饱和，田间实拍图仍需补标微调验证。
 
 ## 预警规则
 
@@ -137,7 +140,8 @@ YoloTrainer/
 - [x] 10 类整叶标注数据集
 - [x] 10 类检测模型（v1）
 - [x] 监测预警页与规则引擎
-- [ ] 重训整叶标注模型并复测 test 集
+- [x] 重训整叶标注模型（v2，mAP50-95 0.995）
+- [ ] test 集独立复测
 - [ ] 田间实拍数据补标与微调
 - [ ] 摄像头实时监测
 
